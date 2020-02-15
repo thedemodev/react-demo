@@ -1,52 +1,67 @@
-import React from "react"
+/** @jsx jsx */
+import { jsx, Styled, useColorMode } from 'theme-ui'
+import { Box, Flex, Text, Input, Button } from '@theme-ui/components'
 import { graphql } from "gatsby"
 import { useTipeQuery } from '@tipe/react'
 import Layout from "../components/layout"
-// import SEO from "../components/seo"
+import ReactMarkdown from 'react-markdown'
 
-const IndexPage = ({ data }) => {
-  // const { content } = useTipeQuery({
-  //   events: ['draft'],
-  //   staticContent: document,
-  //   transformEvent(d) {
-  //     return {
-  //       ...d.fields,
-  //       meta: {
-  //         createdAt: d.createdAt,
-  //         id: d.id,
-  //       },
-  //     }
-  //   },
-  //   getId(d) {
-  //     return d.meta.id
-  //   },
-  // })
-  // console.log('content: ', content)
+const IndexPage = ({ data: {document} }) => {
+  console.log(document)
+  const {content} = useTipeQuery({
+    events: ['draft'],
+    staticContent: document,
+    transformEvent(d) {
+      return {
+        ...d.fields,
+        meta: {
+          createdAt: d.createdAt,
+          id: d.id,
+        },
+      }
+    },
+    getId(d) {
+      return d.meta.id
+    },
+  })
+
+  console.log(content)
   return (
     <Layout>
-      <div>
-        <h1>Yolo Swag!</h1>
-      </div>
+      <Box sx={{width: '100%'}}>
+        <Flex variant='section.container' sx={{height: '75vh', textAlign: 'center', justifyContent: 'center', alignItems: 'center'}}>
+          <Box>
+            <h1>{content.title}</h1>
+            <ReactMarkdown source={content.subTitle} />
+            <Flex sx={{flexWrap: 'wrap', justifyContent: 'center'}}>
+              <Box sx={{width: '60%', mr: 2}}>
+                <Input type="email" placeholder="email" />
+              </Box>
+              <Box>
+                <Button>{content.cta}</Button>
+              </Box>
+            </Flex>
+          </Box>
+        </Flex>
+        <Box variant="section.container">
+        </Box>
+      </Box>
     </Layout>
   )
 }
 
-export default IndexPage
+export const query = graphql`
+  query HomePageQuery {
+    document: tipeHomePage {
+      meta: _xmeta {
+        createdAt
+        id
+      }
+      subTitle
+      title
+      cta
+    }
+  }
+`
 
-// export const pageQuery = graphql`
-// query HomePageQuery {
-//   document: tipeHomePage {
-//     id
-//     meta: _xmeta {
-//       createdAt
-//       id
-//     }
-//     sections {
-//       value {
-//         name
-//         value
-//       }
-//     }
-//   }
-// }
-// `
+export default IndexPage

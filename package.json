@@ -8,22 +8,33 @@
     "url": "https://github.com/tipeio/tipe-blog-starter/issues"
   },
   "dependencies": {
-    "@tipe/gatsby-source-tipe": "*",
-    "@tipe/gatsby-theme-tipe": "*",
-    "@tipe/js": "*",
-    "@tipe/react": "*",
+    "@emotion/core": "^10.0.27",
+    "@mdx-js/react": "^1.5.5",
+    "@theme-ui/presets": "^0.3.0",
+    "@theme-ui/typography": "^0.3.0",
+    "@tipe/gatsby-source-tipe": "^1.2.1",
+    "@tipe/gatsby-theme-tipe": "^1.5.3",
+    "@tipe/js": "^3.0.2",
+    "@tipe/react": "^1.1.4",
+    "deepmerge": "^4.2.2",
     "dotenv": "^8.2.0",
     "gatsby": "^2.19.7",
     "gatsby-plugin-offline": "^3.0.32",
     "gatsby-plugin-react-helmet": "^3.1.21",
     "gatsby-plugin-sharp": "^2.4.3",
+    "gatsby-plugin-theme-ui": "^0.3.0",
     "gatsby-plugin-typescript": "^2.1.27",
     "gatsby-transformer-sharp": "^2.3.13",
+    "polished": "^3.4.4",
     "prismjs": "^1.19.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-helmet": "^5.2.1",
-    "theme-ui": "^0.3.1"
+    "react-markdown": "^4.3.1",
+    "react-mde": "^8.0.2",
+    "showdown": "^1.9.1",
+    "theme-ui": "^0.3.1",
+    "typography-theme-noriega": "^0.16.19"
   },
   "devDependencies": {
     "prettier": "^1.19.1"
