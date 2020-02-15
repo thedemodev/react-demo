@@ -8,6 +8,7 @@ module.exports = {
     description: `A starter blog demonstrating what Gatsby + Tipe can do.`,
   },
   plugins: [
+    'gatsby-plugin-theme-ui',
     {
       resolve: `@tipe/gatsby-theme-tipe`,
       options: {
