@@ -4,10 +4,12 @@
 2. yarn install
 3. After installation: yarn dev
 4. After site builds, navigate to site(either localhost:8000 or localhost:8001)
-5. Make edits to hero subtitle content on Tipe (many steps)
-6. Make hero title dynamic and add to Tipe (many steps)
-    1. Extra: Make subtitle handle and support markdown
-    2. Extra: Add nav links top Tipe
+
+## Challenge
+1. Make edits to hero subtitle content on Tipe
+2. Make hero title dynamic and add to Tipe
+    * Extra: Make subtitle handle and support markdown
+    * Extra: Add nav links
 
 ## What is Tipe
 * editor that lives in your application
@@ -39,14 +41,11 @@
 ```
 
 # Create a schema
-## Schema
-* A schema is: A javascript object that contains templates keyed by their names
+### Schema - contains templates keyed by their names
 
-## Templates
-* A template is: A javascript object that defines the shape of a document
+### Templates - defines the shape of a document
 
-## Fields
-* A field is: A javascript object that defines the type of a value
+### Fields - defines the type of a value
 
 * Here is an example or a plain home page template with a single H1 tag
 ``` javascript
@@ -69,46 +68,63 @@
     }
   }
 ```
-## Types
+# Types
 
-### Primitives (String, Number, Boolean)
-
-### Collections (Object, Array) - ultimately boil down to primatives
-
-#### Array
-* **array** renders a list of elements, **contains** restricts values allowed in the list and is required
-  ``` javascript
-    exampleArray: {
-      type: array,
-      contains: [{ type: string }, { type: number }, { type: boolean }]
-    }
-  ```
-
-#### Object
-* **object** has fields that can be a primative or another type 
+## Primitives (String, Number, Boolean)
 ``` javascript
-  exampleObject: {
-    template: object,
-    fields: {
-      exampleString: {
-        type: string,
-        name: example
-      }
-    }
-  }
+// primative fields - contain a keyed name, 
 
-  exampleObject2: {
-    template: object,
-    fields: {
-      exampleString2: {
-        type: exampleObject,
-        name: example2
-      }
+  fields: {
+    exampleString: {
+      name: '',
+      type: 'string'
+    },
+    exampleNumber: {
+      name: '',
+      type: 'number'
+    },
+    exampleBoolean: {
+      name: '',
+      type: 'boolean'
     }
   }
 ```
-#### Custom components
-* Tipe supports custom components that allow you to customize your editor in anyway you wish. There are 2 simple props that we require a change handler (onChange) and a value prop
+
+## Collections (Array, Object) template types used to describe document fields
+### Array - renders a list of elements, **contains** restricts values allowed in the list and is required
+  ``` javascript
+    fields: {
+      exampleArray: {
+        template: array,
+        contains: [{ type: string }, { type: number }, { type: boolean }]
+      }
+    }
+  ```
+
+  ### Object - has fields that can be a primative or another type 
+  ``` javascript
+    exampleObject: {
+      template: object,
+      fields: {
+        exampleString: {
+          type: string,
+          name: example
+        }
+      }
+    }
+
+    exampleObject2: {
+      template: object,
+      fields: {
+        exampleString2: {
+          type: exampleObject,
+          name: example2
+        }
+      }
+    }
+  ```
+### Custom components
+#### Tipe supports custom components that allow you to customize your editor in anyway you wish. There are 2 simple props that we require a change handler (onChange) and a value prop
 ``` javascript
 const customComponent = props => {
   return (
