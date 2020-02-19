@@ -7,7 +7,6 @@ import Layout from "../components/layout"
 import ReactMarkdown from 'react-markdown'
 
 const IndexPage = ({ data: {document} }) => {
-  console.log(document)
   const {content} = useTipeQuery({
     events: ['draft'],
     staticContent: document,
@@ -25,13 +24,12 @@ const IndexPage = ({ data: {document} }) => {
     },
   })
 
-  console.log(content)
   return (
     <Layout>
       <Box sx={{width: '100%'}}>
         <Flex variant='section.container' sx={{height: '75vh', textAlign: 'center', justifyContent: 'center', alignItems: 'center'}}>
           <Box>
-            <h1>{content.title}</h1>
+            <h1>Hello there</h1>
             <ReactMarkdown source={content.subTitle} />
             <Flex sx={{flexWrap: 'wrap', justifyContent: 'center'}}>
               <Box sx={{width: '60%', mr: 2}}>
@@ -52,13 +50,12 @@ const IndexPage = ({ data: {document} }) => {
 
 export const query = graphql`
   query HomePageQuery {
-    document: tipeHomePage {
+    document: tipeHome {
       meta: _xmeta {
         createdAt
         id
       }
       subTitle
-      title
       cta
     }
   }
