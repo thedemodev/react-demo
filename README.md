@@ -1,28 +1,124 @@
-## 🚀 Quick start
+# Tipe React Demo
+> A demo Gatsby application that integrates with an early version of Tipe
+
+
+- [Tipe React Demo](#tipe-react-demo)
+  - [Getting started](#getting-started)
+  - [Docs](#docs)
+  - [Overview](#overview)
+  - [Content Schema](#content-schema)
+  - [Content Editor](#content-editor)
+  - [Tasks](#tasks)
+
 ## Getting started
-1. Create .env file and add values provided from us
-2. yarn install
-3. After installation: yarn dev
+1. Create `.env` file on the root and add values provided from us
+2. `yarn`
+3. `yarn dev`
 4. After site builds, navigate to site(either localhost:8000 or localhost:8001)
 
-## Challenge
-1. Make edits to hero subtitle content on Tipe
-2. Make hero title dynamic and add to Tipe
-    * Extra: Make subtitle handle and support markdown
-    * Extra: Add nav links
+## Docs
+### Overview
+Tipe is a Headless CMS built for developers. You can add the open source editor to your app and use our hosted API to access your content. Tipe is composed of a few parts that work together to help you and your team manage content.
 
-## What is Tipe
-* editor that lives in your application
-* real time edits
-* custom components
+1. Content Schema - create the shape of your content
+2. Open Source Content Editor - used to create and edit documents
+3. Documents - your content
+4. SDKs - helpers to access the API
 
-### gatsby-theme-tipe
-```javascript
-// gatsby-config.js
+
+### Content Schema
+> Create a schema in your code. You are in control.
+
+The content editor uses this schema as a source of truth to render a form for your team to create documents
+
+**Basic Schema**
+```js
+{
+  homePage: {
+    // this template is for creating documents. There are other types of templates. Only documents
+    // types can be used to create documents.
+    template: 'document',
+    // used to reference this template with the API
+    type: 'homePage',
+    // name of the template that will be used on the content editor
+    name: 'Home Page',
+    // description of fields for this template. ALl documents from this template
+    // will have these fields
+    fields: {
+      // key of the field that will be used in the API
+      title: {
+        // the type of the field. There are 3 primitive types, 'string', 'number', 'boolean'
+        type: 'string',
+        name: 'Title'
+      }
+    }
+  }
+}
+```
+
+**Collection Types**
+```js
+{
+  hero: {
+    // object types can be used tp group fields together
+    template: 'object',
+    type: 'hero',
+    name: 'Hero',
+    // has fields just like a document template
+    fields: {
+      title: {
+        type: 'string',
+        name: 'Title'
+      },
+
+      subTitle: {
+        type: 'string',
+        name: 'Sub title'
+      }
+    }
+  },
+  homePage: {
+    template: 'document',
+    type: 'homePage',
+    name: 'Home Page',
+    fields: {
+      hero: {
+        type: 'hero', // ref the object type 
+        name: 'Hero'
+      }
+    }
+  }
+}
+```
+
+**Custom Components**
+```js
+const MyCustomComponent = (props) => <input value={props.value}  onChange={e => props.setValue(e.target.value)}/>
 
 {
+  homePage: {
+    template: 'document',
+    type: 'homePage',
+    name: 'Home Page',
+    fields: {
+      title: {
+        type: 'string',
+        name: 'Title',
+        component: MyCustomComponent // use any component you want for any field
+      }
+    }
+  }
+}
+```
+
+
+### Content Editor
+> The content editor is a Gatsby theme for this demo, `@tipe/gatsby-theme-tipe`
+
+```javascript
+{
   plugins: [
-    resolve: `@tipe/gatsby-theme-tipe`, -- this is our theme
+    resolve: `@tipe/gatsby-theme-tipe`,
       options: {
         // this is the relative path on your existing site that you will find your tipe theme dashboard
         // ex: localhost:yoursiteroot/tipe
@@ -40,95 +136,8 @@
 }
 ```
 
-# Create a schema
-### Schema - contains templates keyed by their names
-
-### Templates - defines the shape of a document
-
-### Fields - defines the type of a value
-
-* Here is an example or a plain home page template with a single H1 tag
-``` javascript
-  HomePage: {
-    // this is the default template type
-    template: document,
-    // Scott
-    type: HomePage,
-    // this is what will be displayed in the editor ui
-    name: Home Page,
-    // where you define your content
-    fields: {
-      // this is the identifier that will be used in lookup
-      title: {
-        // its a primative string type that will render a default text input
-        type: string,
-        // this is what will be displayed in the editor ui
-        name: title
-      }
-    }
-  }
-```
-# Types
-
-## Primitives (String, Number, Boolean)
-``` javascript
-// primative fields - contain a keyed name, 
-
-  fields: {
-    exampleString: {
-      name: '',
-      type: 'string'
-    },
-    exampleNumber: {
-      name: '',
-      type: 'number'
-    },
-    exampleBoolean: {
-      name: '',
-      type: 'boolean'
-    }
-  }
-```
-
-## Collections (Array, Object) template types used to describe document fields
-### Array - renders a list of elements, **contains** restricts values allowed in the list and is required
-  ``` javascript
-    fields: {
-      exampleArray: {
-        template: array,
-        contains: [{ type: string }, { type: number }, { type: boolean }]
-      }
-    }
-  ```
-
-  ### Object - has fields that can be a primative or another type 
-  ``` javascript
-    exampleObject: {
-      template: object,
-      fields: {
-        exampleString: {
-          type: string,
-          name: example
-        }
-      }
-    }
-
-    exampleObject2: {
-      template: object,
-      fields: {
-        exampleString2: {
-          type: exampleObject,
-          name: example2
-        }
-      }
-    }
-  ```
-### Custom components
-#### Tipe supports custom components that allow you to customize your editor in anyway you wish. There are 2 simple props that we require a change handler (onChange) and a value prop
-``` javascript
-const customComponent = props => {
-  return (
-    <input value={props.value} onChange={props.setValue}/>
-  )
-}
-```
+## Tasks
+1. Make edits to hero subtitle content on Tipe
+2. Make hero title dynamic by adding it to Tipe
+  * Extra: Make subtitle handle and support markdown
+  * Extra: Add nav links
