@@ -13,7 +13,6 @@ export const schema = {
       subTitle: {
         type: 'string',
         name: 'Sub Title',
-        component: Markdown
       },
       cta: {
         type: 'string',
