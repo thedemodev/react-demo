@@ -1,9 +1,9 @@
 import Markdown from './editors/markdown'
 
 export const schema = {
-  homePage: {
+  home: {
     template: 'document',
-    type: 'homePage',
+    type: 'home',
     name: 'Home Page',
     fields: {
       title: {
