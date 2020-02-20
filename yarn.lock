@@ -1802,10 +1802,10 @@
     "@tipe/js" "^3.0.2"
     eventsource "^1.0.7"
 
-"@tipe/gatsby-theme-tipe@^1.5.5":
-  version "1.5.5"
-  resolved "https://registry.yarnpkg.com/@tipe/gatsby-theme-tipe/-/gatsby-theme-tipe-1.5.5.tgz#8f17b86b03c180e911debca997e9dfe2a30c2633"
-  integrity sha512-rd8viurgUmRmYcSRhNxzaoX7f5JxCGiXeGd5OzjAiWbti3Ew9t5Q1SsG8i+48UvKP/Q26twffCZlDWtQtasQOQ==
+"@tipe/gatsby-theme-tipe@^1.5.6":
+  version "1.5.6"
+  resolved "https://registry.yarnpkg.com/@tipe/gatsby-theme-tipe/-/gatsby-theme-tipe-1.5.6.tgz#d5d7075ce2e16eed72c47d1c976858f6dc42d102"
+  integrity sha512-/NgSRvmEwIm/hHp0/CiboClsZf6rMJ0VV506pijJUHRTVZ+em1i1n6tHfgwwYiytVra5r4VYTJ86YVnSt4AZJg==
   dependencies:
     "@emotion/core" "^10.0.27"
     "@mdx-js/react" "^1.5.3"
