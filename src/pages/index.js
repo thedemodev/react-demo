@@ -4,7 +4,7 @@ import { Box, Flex, Text, Input, Button } from '@theme-ui/components'
 import { graphql } from "gatsby"
 import { useTipeQuery } from '@tipe/react'
 import Layout from "../components/layout"
-import ReactMarkdown from 'react-markdown'
+// import ReactMarkdown from 'react-markdown'
 
 const IndexPage = ({ data: {document} }) => {
   const {content} = useTipeQuery({
@@ -30,7 +30,8 @@ const IndexPage = ({ data: {document} }) => {
         <Flex variant='section.container' sx={{height: '75vh', textAlign: 'center', justifyContent: 'center', alignItems: 'center'}}>
           <Box>
             <h1>Hello there</h1>
-            <ReactMarkdown source={content.subTitle} />
+            
+            <p>{content.subTitle}</p>
             <Flex sx={{flexWrap: 'wrap', justifyContent: 'center'}}>
               <Box sx={{width: '60%', mr: 2}}>
                 <Input type="email" placeholder="email" />
